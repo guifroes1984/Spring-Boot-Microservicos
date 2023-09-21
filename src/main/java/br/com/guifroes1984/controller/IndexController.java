@@ -23,6 +23,17 @@ public class IndexController {
 	private UsuarioRepository usuarioRepository;
 	
 	/*Serviço RESTfull*/
+	@GetMapping(value = "/{id}/codigovenda/{venda}", produces = "application/pdf")
+	public ResponseEntity<Usuario> relatorio(@PathVariable (value = "id") Long id
+											, @PathVariable (value = "venda") Long venda) {
+		
+		Optional<Usuario> usuario = usuarioRepository.findById(id);
+		
+		/*O retorno seria um relatório*/
+		return new ResponseEntity<Usuario>(usuario.get(), HttpStatus.OK);
+	}
+	
+	/*Serviço RESTfull*/
 	@GetMapping(value = "/{id}", produces = "application/json")
 	public ResponseEntity<Usuario> init(@PathVariable (value = "id") Long id) {
 		
