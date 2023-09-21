@@ -2,41 +2,41 @@ package br.com.guifroes1984.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.guifroes1984.model.Usuario;
+import br.com.guifroes1984.repository.UsuarioRepository;
 
 @RestController /*Arquitetura REST*/
 @RequestMapping(value = "/usuario")
 public class IndexController {
 	
+	@Autowired
+	private UsuarioRepository usuarioRepository;
+	
 	/*Serviço RESTfull*/
+	@GetMapping(value = "/{id}", produces = "application/json")
+	public ResponseEntity<Usuario> init(@PathVariable (value = "id") Long id) {
+		
+		Optional<Usuario> usuario = usuarioRepository.findById(id);
+		
+		return new ResponseEntity<Usuario>(usuario.get(), HttpStatus.OK);
+	}
+	
 	@GetMapping(value = "/", produces = "application/json")
-	public ResponseEntity<Usuario> init() {
+	public ResponseEntity<List<Usuario>> usuarios() {
 		
-		Usuario usuario = new Usuario();
-		usuario.setId(1L);
-		usuario.setLogin("gui@gmail.com");
-		usuario.setNome("Guilherme");
-		usuario.setSenha("123456");
+		List<Usuario> list = (List<Usuario>) usuarioRepository.findAll();
 		
-		Usuario usuario2 = new Usuario();
-		usuario2.setId(2L);
-		usuario2.setLogin("fran@gmail.com");
-		usuario2.setNome("Fran");
-		usuario2.setSenha("654321");
-		
-		List<Usuario> usuarios = new ArrayList<Usuario>();
-		usuarios.add(usuario);
-		usuarios.add(usuario2);
-		
-		
-		return new  ResponseEntity(usuarios, HttpStatus.OK);
+		return new ResponseEntity<List<Usuario>>(list, HttpStatus.OK);
 	}
 
 }
