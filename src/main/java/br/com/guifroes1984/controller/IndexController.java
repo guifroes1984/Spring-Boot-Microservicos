@@ -56,7 +56,7 @@ public class IndexController {
 	@DeleteMapping(value = "/{id}/venda", produces = "application/text")
 	public String deleteVenda(@PathVariable("id") Long id) {
 		
-		usuarioRepository.deleteById(id);
+		usuarioRepository.deleteById(id);/*Iria deletetar todas vendas do usuário*/
 		
 		return "ok";
 	}
