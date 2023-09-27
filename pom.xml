@@ -11,7 +11,7 @@
 	<groupId>br.com.guifroes1984</groupId>
 	<artifactId>springbootrestapi</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>springbootrestapi</name>
 	<description>API Rest Spring Boot</description>
 	<properties>
