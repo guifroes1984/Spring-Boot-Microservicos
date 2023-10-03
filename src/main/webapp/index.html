@@ -5,26 +5,28 @@
 <title>Insert title here</title>
 
 <script
-  src="https://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOoJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  src="https://code.jquery.com/jquery-3.6.2.js"
+  integrity="sha256-pkn2CUZmheSeyssYw3vMp1+xyub4m+e+QK4sQskvuo4="
   crossorigin="anonymous"></script>
 </head>
 <body>
 
-	<script>
+	<script type="text/javascript">
 	
 		$(document).ready (
-			
+				
 			function () {
 				
 				$.ajax({
-					url : "http://localhost:8080/usuario/", 
-					method : "GET"
+					url : "http://localhost:8080/usuario/",
+					method:"GET"
 				}).then (function (data, status, info) {
 					
-				} );
+				});
+				
 			}
 		);
+	
 	</script>
 
 </body>
